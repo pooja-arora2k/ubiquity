@@ -59,7 +59,7 @@ else
 
 }
 
-public void modifyEditProfile() {
+public void modifyAndCheckEditProfile() {
 
 String newEmailId ="pooja@test.com";
 String newDoB ="03042016";
