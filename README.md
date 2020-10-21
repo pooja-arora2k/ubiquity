@@ -54,6 +54,17 @@ Test Result: FAIL
  
  #Automated test
  The scenario is automated using Selenium webdriver
+ Following methods are used :
+ Test scenario:
+1. User login and browses to edit profile
+ loginToUbq();
+ browseEditProfile();
+ 2. Verify user can go to edit profile page successfully.
+ verifyEditProfileUrl();
+ 3.User changes email address, date of birth and password and 4.User click submit button and 5.Verify updated info shows on the page
+ modifyandCheckEditProfile();
+ 
+ Automated Test code is placed in file Automated code
  
  
  
