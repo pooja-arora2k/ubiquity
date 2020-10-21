@@ -64,7 +64,7 @@ Test Result: FAIL
  3.User changes email address, date of birth and password and 4.User click submit button and 5.Verify updated info shows on the page
  modifyandCheckEditProfile();
  
- Automated Test code is placed in file Automated code
+ Automated Test code is placed in file Automation code
  
  
  
