@@ -52,6 +52,10 @@ Test Result: FAIL
  2. Landing page welcome text does not match with the requirement.
  3.User cannot edit the profile on the landing page, the landing page shows content updated successfully but does not update in actual, navigating back to home button and checking the profile again
  
+ #Automated test
+ The scenario is automated using Selenium webdriver
+ 
+ 
  
  
  
