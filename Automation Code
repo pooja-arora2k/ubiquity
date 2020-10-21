@@ -1,0 +1,113 @@
+package testUbiquity;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class TestUbq {
+WebDriver driver;
+
+public void invokeBrowser(String url) {
+try {
+System.setProperty("webdriver.chrome.driver",
+"D:\\SeleniumForChrome\\chromedriver_win32\\chromedriver.exe");
+driver = new ChromeDriver();
+driver.manage().window().maximize();
+driver.manage().deleteAllCookies();
+driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+driver.get(url);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+
+
+public void loginToUbq() throws InterruptedException {
+invokeBrowser("http://54.253.214.197:8081/");
+  driver.findElement(By.name("username")).sendKeys("ubiquity");
+
+   // Enter Password
+   driver.findElement(By.name("password")).sendKeys("P@ss123#UbiQuity");
+
+WebElement login= driver.findElement(By.xpath("//button[@type=\"submit\"]"));
+
+login.click();
+
+}
+public void browseEditProfile(){
+WebElement editProfile = driver.findElement(By.xpath("//ul[@id='fields']/div[@class='form-button right']/a[@class='button'][1]/span"));
+editProfile.click();
+
+
+}
+public void verifyEditProfileUrl() {
+String actualUrl="http://54.253.214.197:8081/editprofile";
+String expectedUrl;
+expectedUrl = driver.getCurrentUrl();
+
+if(actualUrl.equalsIgnoreCase(expectedUrl)) {
+System.out.println("EditProfile page landing Success");
+}
+else
+{ System.out.println("EditProfile page landing Fail");
+}
+
+}
+
+public void modifyEditProfile() {
+
+String newEmailId ="pooja@test.com";
+String newDoB ="03042016";
+String newPasswd ="Test1234!";
+String newConfirmPasswd ="Test1234!";
+driver.findElement(By.id("Email")).sendKeys(newEmailId);
+driver.findElement(By.id("DateOfBirth")).sendKeys(newDoB);
+driver.findElement(By.id("NewPassword")).sendKeys(newPasswd);
+driver.findElement(By.id("ConfirmNewPassword")).sendKeys(newConfirmPasswd);
+driver.findElement(By.xpath("//button[@class='submit-button engage-button submit right']")).click();
+
+Thread.sleep(2000);
+//Verify updated profile***********
+//Verify email
+String verifyEmail = driver.findElement(By.id("Email")).getAttribute("value");
+if(verifyEmail.equalsIgnoreCase(newEmailId))
+{
+System.out.println("Email update Success");
+}
+else
+{
+System.out.println("Email update Fail");
+}
+//Verify DateOfBirth
+String verifyDoB =driver.findElement(By.id("DateOfBirth")).getAttribute("value");
+
+
+if(verifyDoB.equalsIgnoreCase(newDoB))
+{
+System.out.println("DoB update Success");
+}
+else
+{
+System.out.println("DoB update Fail");
+}
+
+
+//Verify Password
+if(newPasswd.equalsIgnoreCase(newConfirmPasswd))
+{
+System.out.println("Password Updated Successful");
+}
+}
+
+
+public static void main(String[] args) throws InterruptedException {
+TestUbq Obj = new TestUbq();
+
+Obj.loginToUbq();
+}
+}
